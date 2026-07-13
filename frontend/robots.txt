@@ -1,0 +1,15 @@
+# robots.txt for DMT Website - Atlas
+# https://www.dmt-technologies.com/
+
+User-agent: *
+Allow: /
+
+# Disallow admin or private areas (if added later)
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap location
+Sitemap: https://www.dmt-technologies.com/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1

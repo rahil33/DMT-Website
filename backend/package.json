@@ -1,0 +1,36 @@
+{
+  "name": "dmt-website-backend",
+  "version": "1.0.0",
+  "description": "DMT Website Backend - Contact Form API",
+  "main": "server.js",
+  "scripts": {
+  "dev": "nodemon server.js",
+  "start": "node server.js"
+},
+  "keywords": [
+    "dmt",
+    "digital-marketing",
+    "contact-api"
+  ],
+  "author": "Digital Meister Technologies Private Limited",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.0",
+    "dotenv": "^16.3.1",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "compression": "^1.7.4",
+    "morgan": "^1.10.0",
+    "express-rate-limit": "^7.1.5",
+    "nodemailer": "^6.9.7",
+    "validator": "^13.11.0",
+    "express-validator": "^7.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
