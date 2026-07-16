@@ -1,148 +1,167 @@
-# DMT WEBSITE — Digital Meister Technologies
+# DMT Website - Digital Meister Technologies
 
-A professional corporate landing website for **Digital Meister Technologies Private Limited (DMT)** and its subsidiary brand **Atlas**.
+> Atlas Marketing & Strategy | A Subsidiary of DMT
 
----
+Professional digital marketing and branding agency website with a modern, luxury black-and-gold design.
+
+## 🚀 Features
+
+### Frontend
+- **Luxury Design**: Premium black and gold branding with smooth animations
+- **Responsive**: Fully responsive across all devices
+- **Interactive Cursor**: Custom cursor with hover effects
+- **Canvas Animations**: Dynamic particle animations
+- **Contact Form**: Integrated with backend API
+- **Legal Pages**: Comprehensive Privacy Policy and Terms & Conditions
+- **SEO Optimized**: Meta tags, structured data, and semantic HTML
+- **Accessibility**: WCAG compliant with ARIA labels and keyboard navigation
+
+### Backend
+- **RESTful API**: Node.js + Express backend
+- **Database**: MongoDB Atlas integration
+- **Email Notifications**: Automated emails via Nodemailer
+  - Company notification emails
+  - Customer confirmation emails
+- **Security**: Helmet, CORS, rate limiting, input validation
+- **Validation**: Express-validator for form validation
+- **Logging**: Morgan request logging
+- **Error Handling**: Centralized error handling
+- **Health Endpoint**: Database status monitoring
 
 ## 📁 Project Structure
 
 ```
 DMT WEBSITE/
-├── frontend/
-│   ├── index.html              # Main landing page
-│   ├── css/
-│   │   └── style.css           # All styles with responsive design
-│   ├── js/
-│   │   ├── animations/
-│   │   │   ├── canvas.js       # Hero & quote section canvas animations
-│   │   │   └── letters.js      # Magnetic hero title letters
-│   │   ├── components/
-│   │   │   ├── cursor.js       # Custom cursor interaction
-│   │   │   ├── scroll.js       # Scroll effects & nav behavior
-│   │   │   └── cta.js          # Contact form handler
-│   │   └── utils/
-│   │       └── api.js          # Backend API integration
-│   └── assets/
-│       ├── images/             # Place images here
-│       ├── logos/              # Place logo files here
-│       └── icons/              # Place icon files here
+├── backend/                    # Node.js backend
+│   ├── server.js              # Main server entry point
+│   ├── package.json           # Backend dependencies
+│   ├── .env.example           # Environment variables template
+│   ├── src/
+│   │   ├── config/
+│   │   │   ├── database.js    # MongoDB connection
+│   │   │   └── email.js       # Email configuration
+│   │   ├── controllers/
+│   │   │   └── contactController.js
+│   │   ├── middleware/
+│   │   │   ├── logger.js      # Request logging
+│   │   │   ├── errorHandler.js # Error handling
+│   │   │   └── rateLimiter.js  # Rate limiting
+│   │   ├── models/
+│   │   │   └── Contact.js     # Contact schema
+│   │   └── routes/
+│   │       └── contactRoutes.js
+│   └── README.md
 │
-└── backend/
-    ├── src/
-    │   ├── server.js           # Express server entry point
-    │   ├── config/
-    │   │   ├── database.js     # MongoDB Atlas connection
-    │   │   └── email.js        # Nodemailer configuration
-    │   ├── controllers/
-    │   │   └── contactController.js  # Contact form logic
-    │   ├── models/
-    │   │   └── Contact.js      # Contact schema & model
-    │   ├── routes/
-    │   │   └── contactRoutes.js # API routes & validation
-    │   ├── middleware/
-    │   │   ├── errorHandler.js # Global error handling
-    │   │   ├── logger.js       # Request logging (Morgan)
-    │   │   └── rateLimiter.js  # Rate limiting for API
-    │   └── utils/              # Utility functions
-    ├── .env.example            # Environment variables template
-    ├── .gitignore
-    └── package.json
+├── frontend/                   # Static website
+│   ├── index.html             # Main landing page
+│   ├── privacy-policy.html    # Privacy Policy
+│   ├── terms.html             # Terms & Conditions
+│   ├── css/
+│   │   └── style.css          # Main stylesheet
+│   ├── js/
+│   │   ├── utils/
+│   │   │   ├── api.js         # API integration
+│   │   │   └── config.js      # Environment config
+│   │   ├── components/
+│   │   │   ├── cursor.js      # Custom cursor
+│   │   │   ├── scroll.js      # Scroll animations
+│   │   │   └── cta.js         # Contact form
+│   │   └── animations/
+│   │       ├── canvas.js      # Canvas animations
+│   │       └── letters.js     # Text animations
+│   └── assets/
+│       └── logos/             # Brand assets
+│
+├── DEPLOYMENT.md              # Deployment guide
+├── README.md                  # This file
+└── .gitignore
 ```
 
----
+## 🛠️ Tech Stack
 
-## 🚀 Quick Start
+### Frontend
+- HTML5, CSS3, JavaScript (ES6+)
+- Google Fonts (Syne, DM Sans)
+- Canvas API for animations
+- Fetch API for HTTP requests
+
+### Backend
+- Node.js 18+
+- Express.js 4.x
+- MongoDB with Mongoose
+- Nodemailer for emails
+- Express Validator
+- Helmet for security
+- CORS
+- Compression
+- Morgan for logging
+- Express Rate Limit
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+ installed
-- MongoDB Atlas account (free tier works)
-- Email account for SMTP (Gmail with App Password recommended)
 
-### 1. Install Backend Dependencies
+- Node.js 18 or higher
+- MongoDB Atlas account
+- Gmail account with 2FA (for emails)
+- Git
 
-```bash
-cd backend
-npm install
-```
+### Installation
 
-### 2. Configure Environment Variables
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd "DMT WEBSITE"
+   ```
 
-```bash
-# Copy the example file
-cp .env.example .env
+2. **Install backend dependencies:**
+   ```bash
+   cd backend
+   npm install
+   ```
 
-# Edit .env with your credentials
-```
+3. **Configure environment variables:**
 
-**Required Environment Variables:**
+   **Backend** (`backend/.env`):
+   ```env
+   NODE_ENV=development
+   PORT=5000
+   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/dmt_website
+   EMAIL_HOST=smtp.gmail.com
+   EMAIL_PORT=587
+   EMAIL_SECURE=false
+   EMAIL_USER=your-email@gmail.com
+   EMAIL_PASS=your-app-password
+   EMAIL_FROM="Digital Meister Technologies <noreply@dmt-technologies.com>"
+   CONTACT_EMAIL=info@dmt-technologies.com
+   FRONTEND_URL=http://localhost:5500
+   RATE_LIMIT_WINDOW_MS=900000
+   RATE_LIMIT_MAX_REQUESTS=100
+   ```
 
-```env
-# Server
-NODE_ENV=development
-PORT=5000
+   **Frontend** (`frontend/.env`):
+   ```env
+   VITE_API_URL=http://localhost:5000/api
+   ```
 
-# MongoDB Atlas
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/dmt_website
+4. **Start the backend:**
+   ```bash
+   cd backend
+   npm run dev
+   ```
 
-# Email (Gmail example)
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_SECURE=false
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-gmail-app-password
-EMAIL_FROM="Digital Meister Technologies <noreply@dmt-technologies.com>"
-CONTACT_EMAIL=info@dmt-technologies.com
+5. **Open the frontend:**
+   - Use Live Server extension in VS Code
+   - Or serve with any static file server
+   - Navigate to `http://localhost:5500`
 
-# Frontend URL (for CORS)
-FRONTEND_URL=http://localhost:5500
+## 📝 API Documentation
 
-# Rate Limiting
-RATE_LIMIT_WINDOW_MS=900000
-RATE_LIMIT_MAX_REQUESTS=10
-```
+### Contact Form API
 
-### 3. Set Up MongoDB Atlas
+#### POST /api/contact
 
-1. Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-2. Create a free cluster
-3. Create a database user
-4. Whitelist your IP (or 0.0.0.0/0 for development)
-5. Get your connection string
-6. Create a database named `dmt_website`
-
-### 4. Start the Backend Server
-
-```bash
-# Development mode (with auto-reload)
-npm run dev
-
-# Production mode
-npm start
-```
-
-Server will start on `http://localhost:5000`
-
-### 5. Run the Frontend
-
-Open `frontend/index.html` in your browser or use a local server:
-
-```bash
-# Option 1: VS Code Live Server (recommended)
-# Right-click index.html → "Open with Live Server"
-
-# Option 2: Python
-cd frontend
-python -m http.server 5500
-
-# Option 3: Node.js http-server
-npx http-server frontend -p 5500
-```
-
----
-
-## 📬 Contact Form API
-
-### Endpoint: `POST /api/contact`
+Submit a contact form enquiry.
 
 **Request Body:**
 ```json
@@ -150,19 +169,19 @@ npx http-server frontend -p 5500
   "name": "John Doe",
   "company": "Acme Inc",
   "email": "john@example.com",
-  "phone": "+1234567890",
+  "phone": "+91 9999999999",
   "service": "Digital Marketing",
-  "message": "I need help with my marketing strategy..."
+  "message": "I'm interested in your services..."
 }
 ```
 
-**Success Response (201):**
+**Response (201):**
 ```json
 {
   "success": true,
   "message": "Thank you for your enquiry. We will contact you soon.",
   "data": {
-    "id": "65a1234567890abcdef12345",
+    "id": "65f1234567890abcdef12345",
     "name": "John Doe",
     "email": "john@example.com",
     "submittedAt": "2025-01-15T10:30:00.000Z"
@@ -170,269 +189,150 @@ npx http-server frontend -p 5500
 }
 ```
 
-**Error Response (400/500):**
+**Validation:**
+- `name`: Required, 2-100 characters
+- `email`: Required, valid email format
+- `message`: Required, 10-2000 characters
+- `company`: Optional, max 100 characters
+- `phone`: Optional, max 20 characters
+- `service`: Optional, max 100 characters
+
+#### GET /api/health
+
+Check API and database status.
+
+**Response (200):**
 ```json
 {
-  "success": false,
-  "message": "Validation error message"
+  "status": "ok",
+  "database": "connected",
+  "timestamp": "2025-01-15T10:30:00.000Z",
+  "environment": "development"
 }
 ```
-
-### Rate Limiting
-- **Contact Form:** 5 submissions per hour per IP
-- **General API:** 100 requests per 15 minutes per IP
-
----
-
-## 🎨 Services Offered
-
-The website showcases DMT's comprehensive services:
-
-1. **Digital Marketing**
-2. **Social Media Marketing**
-3. **Branding**
-4. **Graphic Design**
-5. **Logo Design**
-6. **Marketing Collateral** (Posters, Flyers, Pamphlets, Brochures, Business Cards)
-7. **Corporate Identity** (Lanyards, ID Cards, Badges, Packaging Design)
-8. **Banner Design**
-9. **Corporate Printing**
-10. **Website Design**
-11. **Marketing Consultation**
-12. **SEO & Search**
-
----
 
 ## 🔒 Security Features
 
-- **Helmet.js** — Security HTTP headers
-- **CORS** — Cross-origin resource sharing configuration
-- **Compression** — Response compression
-- **Rate Limiting** — Prevents abuse
-- **Input Validation** — express-validator on all inputs
-- **MongoDB Injection Protection** — Mongoose ODM
-- **Environment Variables** — Secrets never in code
+- **Helmet**: HTTP security headers
+- **CORS**: Cross-origin resource sharing configuration
+- **Rate Limiting**: 100 requests per 15 minutes (general), 5 per hour (contact form)
+- **Input Validation**: Express-validator for all inputs
+- **XSS Protection**: Input sanitization
+- **MongoDB Injection Protection**: Mongoose validation
+- **Environment Variables**: No hardcoded secrets
 
----
+## 📧 Email Configuration
 
-## 📱 Responsive Design
+### Gmail App Password Setup
 
-The website is fully responsive across:
-- **Desktop** (1920px+)
-- **Laptop** (1440px)
-- **Tablet** (1024px)
-- **Mobile Landscape** (768px)
-- **Mobile Portrait** (480px)
+1. Go to your Google Account settings
+2. Enable 2-Factor Authentication
+3. Visit: https://myaccount.google.com/apppasswords
+4. Create an app password for "Mail"
+5. Use this password in `EMAIL_PASS` environment variable
 
----
+### Email Templates
 
-## 🛠️ Development
+- **Company Notification**: Sent to `CONTACT_EMAIL` with enquiry details
+- **Customer Confirmation**: Professional confirmation email with enquiry summary
 
-### Folder Organization
+## 🧪 Testing
 
-**Frontend JavaScript:**
-- `animations/` — Canvas animations, magnetic letter effects
-- `components/` — Cursor, scroll behavior, form handling
-- `utils/` — API integration, helper functions
+### Manual Testing
 
-**Backend:**
-- `config/` — Database & email configuration
-- `controllers/` — Business logic
-- `models/` — Mongoose schemas
-- `routes/` — API endpoints with validation
-- `middleware/` — Error handling, logging, rate limiting
+1. **Contact Form:**
+   - Fill out all fields
+   - Submit and verify success message
+   - Check MongoDB for submission
+   - Verify both emails are received
 
-### Code Style
+2. **API Health:**
+   ```bash
+   curl http://localhost:5000/api/health
+   ```
 
-- No comments in production code (clean, self-documenting)
-- Consistent naming conventions
-- Modular architecture
-- Error handling everywhere
+3. **Rate Limiting:**
+   - Submit contact form 6 times rapidly
+   - Verify 6th submission is blocked
 
----
+## 📊 Database Schema
 
-## 📦 Dependencies
+### Contact Model
 
-### Backend
-```json
-{
-  "express": "^4.18.2",
-  "mongoose": "^8.0.0",
-  "dotenv": "^16.3.1",
-  "cors": "^2.8.5",
-  "helmet": "^7.1.0",
-  "compression": "^1.7.4",
-  "morgan": "^1.10.0",
-  "express-rate-limit": "^7.1.5",
-  "nodemailer": "^6.9.7",
-  "validator": "^13.11.0",
-  "express-validator": "^7.0.1"
-}
-```
-
-### Frontend
-- **No build tools required** — Pure vanilla JavaScript
-- **Google Fonts** — Syne & DM Sans
-- **No external libraries** — Lightweight & fast
-
----
-
-## 🌐 Deployment
-
-### Backend (Railway, Render, or Heroku)
-
-1. Push code to GitHub
-2. Connect repo to hosting platform
-3. Add environment variables
-4. Deploy
-
-### Frontend (Vercel, Netlify, or GitHub Pages)
-
-**Vercel:**
-```bash
-npm install -g vercel
-cd frontend
-vercel
-```
-
-**Netlify:**
-- Drag & drop `frontend` folder to Netlify dashboard
-
-**GitHub Pages:**
-- Push `frontend` contents to `gh-pages` branch
-
----
-
-## 📊 Database Collections
-
-### contacts
 ```javascript
 {
-  _id: ObjectId,
-  name: String (required),
-  company: String,
+  name: String (required, 2-100 chars),
+  company: String (optional, max 100 chars),
   email: String (required, validated),
-  phone: String,
-  service: String,
-  message: String (required, min 10 chars),
-  status: 'new' | 'contacted' | 'converted' | 'closed',
+  phone: String (optional, max 20 chars),
+  service: String (optional, max 100 chars),
+  message: String (required, 10-2000 chars),
+  status: String (enum: new, contacted, converted, closed),
   ipAddress: String,
   userAgent: String,
-  createdAt: Date,
-  updatedAt: Date
+  createdAt: Date (auto),
+  updatedAt: Date (auto)
 }
 ```
 
----
+## 🚀 Deployment
 
-## ✉️ Email Configuration
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.
 
-### Gmail Setup (Recommended for Development)
+### Quick Deploy
 
-1. Enable 2FA on your Gmail account
-2. Generate an App Password:
-   - Go to Google Account → Security → 2-Step Verification → App passwords
-   - Select "Mail" and your device
-   - Copy the generated password
-3. Use the App Password in `.env` (not your regular Gmail password)
+1. **Backend (Render):**
+   - Push to GitHub
+   - Connect repository to Render
+   - Set environment variables
+   - Deploy
 
-### Production Email
+2. **Frontend (Vercel):**
+   - Connect GitHub repository
+   - Set `VITE_API_URL` environment variable
+   - Deploy
 
-For production, consider:
-- **SendGrid** (free tier: 100 emails/day)
-- **Mailgun** (free tier: 5,000 emails/month)
-- **AWS SES** (pay-as-you-go, very cheap)
+## 📈 Performance
 
-Update `.env` accordingly:
-```env
-EMAIL_HOST=smtp.sendgrid.net
-EMAIL_PORT=587
-EMAIL_USER=apikey
-EMAIL_PASS=your-sendgrid-api-key
-```
+- **Lighthouse Score**: 90+ (target)
+- **First Contentful Paint**: < 1.5s
+- **Time to Interactive**: < 3s
+- **Bundle Size**: Minimal (static site)
 
----
+## ♿ Accessibility
 
-## 🔍 API Endpoints Reference
+- Semantic HTML5
+- ARIA labels and roles
+- Keyboard navigation support
+- Focus indicators
+- Reduced motion support
+- Color contrast compliance
 
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| GET | `/api/health` | Health check | Public |
-| POST | `/api/contact` | Submit contact form | Public |
-| GET | `/api/contact` | Get all contacts (100 latest) | Admin |
-| GET | `/api/contact/:id` | Get single contact | Admin |
-| PATCH | `/api/contact/:id/status` | Update contact status | Admin |
+## 🌐 Browser Support
 
----
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
 
-## 🐛 Troubleshooting
+## 📄 Legal
 
-### MongoDB Connection Fails
-- Check connection string in `.env`
-- Ensure IP is whitelisted in Atlas
-- Verify database user credentials
+- [Privacy Policy](./frontend/privacy-policy.html)
+- [Terms & Conditions](./frontend/terms.html)
 
-### Email Not Sending
-- Use App Password for Gmail (not regular password)
-- Check SMTP settings
-- Verify `CONTACT_EMAIL` is valid
+## 🤝 Support
 
-### CORS Errors
-- Ensure `FRONTEND_URL` matches your frontend address
-- Check browser console for specific CORS error
+- **Email**: info@dmt-technologies.com
+- **WhatsApp**: +91 9952906859
+- **Business Hours**: Monday – Friday, 9:00 AM – 6:00 PM IST
 
-### Form Validation Errors
-- Name: min 2 characters
-- Email: valid format required
-- Message: min 10 characters
+## 📝 License
 
----
-
-## 📝 Changelog
-
-### v2.0 — Complete Reorganization
-- ✅ Reorganized frontend into logical folders
-- ✅ Built Express backend with MongoDB
-- ✅ Implemented contact form with validation
-- ✅ Added email notifications
-- ✅ Updated branding to DMT/Atlas
-- ✅ Removed pricing sections
-- ✅ Expanded services to match DMT offerings
-- ✅ Added comprehensive responsive design
-- ✅ Added security middleware (Helmet, CORS, Rate Limiting)
-
-### v1.0 — Original ATLAS Website
-- Static HTML/CSS/JS
-- Supabase integration
-- Basic contact form (email only)
-- Pricing sections
-
----
-
-## 📄 License
-
-MIT License — Digital Meister Technologies Private Limited
-
----
-
-## 📞 Support
-
-For questions or issues:
-- Email: info@dmt-technologies.com
-- Website: [DMT Website](#)
-
----
-
-## 🎯 Next Steps (Optional Enhancements)
-
-1. **Portfolio CMS** — Add admin panel to manage portfolio items
-2. **Blog Section** — Company news and insights
-3. **Analytics** — Google Analytics or Plausible integration
-4. **SEO Optimization** — Meta tags, Open Graph, sitemap
-5. **Performance** — Image optimization, lazy loading
-6. **Accessibility** — WCAG 2.1 compliance
-7. **Testing** — Unit tests for backend, E2E tests for frontend
+MIT License - Digital Meister Technologies Private Limited
 
 ---
 
 **Built with ❤️ by Digital Meister Technologies**
+
+Atlas Marketing & Strategy | A Subsidiary of DMT

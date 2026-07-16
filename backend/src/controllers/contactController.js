@@ -2,7 +2,7 @@
 // Contact form submission controller
 
 const Contact = require('../models/Contact');
-const { sendContactEmail } = require('../config/email');
+const { sendContactEmail, sendConfirmationEmail } = require('../config/email');
 
 const submitContact = async (req, res) => {
   try {
@@ -21,9 +21,15 @@ const submitContact = async (req, res) => {
 
     await contact.save();
 
-    // Send email notification (non-blocking)
+    // Send email notifications (non-blocking)
+    // Send notification to company
     sendContactEmail(contact.toObject()).catch((err) => {
-      // Email failure is non-critical, log but don't fail the request
+      console.error('Failed to send contact notification email:', err.message);
+    });
+
+    // Send confirmation email to customer
+    sendConfirmationEmail(contact.toObject()).catch((err) => {
+      console.error('Failed to send confirmation email:', err.message);
     });
 
     res.status(201).json({
@@ -52,6 +58,7 @@ const submitContact = async (req, res) => {
       });
     }
 
+    console.error('Contact submission error:', error.message);
     res.status(500).json({
       success: false,
       message: 'Failed to submit enquiry. Please try again later.',
@@ -72,6 +79,7 @@ const getAllContacts = async (req, res) => {
       data: contacts,
     });
   } catch (error) {
+    console.error('Get all contacts error:', error.message);
     res.status(500).json({
       success: false,
       message: 'Failed to retrieve contacts.',
@@ -95,6 +103,7 @@ const getContactById = async (req, res) => {
       data: contact,
     });
   } catch (error) {
+    console.error('Get contact by ID error:', error.message);
     res.status(500).json({
       success: false,
       message: 'Failed to retrieve contact.',
@@ -125,6 +134,7 @@ const updateContactStatus = async (req, res) => {
       data: contact,
     });
   } catch (error) {
+    console.error('Update contact status error:', error.message);
     res.status(500).json({
       success: false,
       message: 'Failed to update contact.',

@@ -1,0 +1,8 @@
+Contact: mailto:info@dmt-technologies.com
+Contact: https://wa.me/919952906859
+Expires: 2026-12-31T23:59:59.000Z
+Encryption: https://www.dmt-technologies.com/.well-known/pgp-key.txt
+Acknowledgments: https://www.dmt-technologies.com/security-acknowledgments.html
+Preferred-Languages: en
+Canonical: https://www.dmt-technologies.com/.well-known/security.txt
+Policy: https://www.dmt-technologies.com/privacy-policy.html

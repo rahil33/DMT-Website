@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" fill="none">
+  <!-- Outer diamond border -->
+  <path d="M250 50 L450 250 L250 450 L50 250 Z" stroke="#C9A85C" stroke-width="4" fill="none"/>
+  <!-- Inner diamond - 4 segments with gaps at corners -->
+  <path d="M258 72 L412 226" stroke="#C9A85C" stroke-width="2.5" stroke-linecap="square"/>
+  <path d="M428 242 L258 428" stroke="#C9A85C" stroke-width="2.5" stroke-linecap="square"/>
+  <path d="M242 428 L72 258" stroke="#C9A85C" stroke-width="2.5" stroke-linecap="square"/>
+  <path d="M88 242 L242 72" stroke="#C9A85C" stroke-width="2.5" stroke-linecap="square"/>
+  <!-- Corner diamonds - centered on outer diamond vertices -->
+  <path d="M250 44 L256 50 L250 56 L244 50 Z" fill="#C9A85C"/>
+  <path d="M250 444 L256 450 L250 456 L244 450 Z" fill="#C9A85C"/>
+  <path d="M44 250 L50 256 L44 262 L38 256 Z" fill="#C9A85C"/>
+  <path d="M456 250 L462 256 L456 262 L450 256 Z" fill="#C9A85C"/>
+  <!-- DMT Text -->
+  <text x="250" y="262" font-family="'Playfair Display', serif" font-size="64" font-weight="700" fill="#F5F0E8" text-anchor="middle" letter-spacing="14">DMT</text>
+</svg>

@@ -7,65 +7,486 @@
   <meta name="description" content="Terms and Conditions for Atlas, a Digital Meister Technologies company.">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .policy-page { max-width: 800px; margin: 0 auto; padding: 140px 64px 80px; }
-    .policy-page h1 { font-family: var(--F); font-size: 48px; font-weight: 800; color: var(--white); margin-bottom: 32px; }
-    .policy-page h2 { font-family: var(--F); font-size: 28px; font-weight: 700; color: var(--gold); margin: 40px 0 16px; }
-    .policy-page p { font-size: 15px; line-height: 1.8; color: var(--dim); margin-bottom: 16px; }
-    .policy-page ul { margin-bottom: 24px; padding-left: 24px; }
-    .policy-page li { font-size: 15px; line-height: 1.8; color: var(--dim); margin-bottom: 8px; }
-    .policy-page a { color: var(--gold); text-decoration: none; }
-    .back-link { display: inline-block; margin-bottom: 32px; color: var(--gold); text-decoration: none; }
-    .back-link:hover { text-decoration: underline; }
+    .legal-page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 140px 64px 80px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 80px;
+    }
+
+    .legal-toc {
+      position: sticky;
+      top: 120px;
+      height: fit-content;
+      border-left: 1px solid var(--border);
+      padding-left: 24px;
+    }
+
+    .legal-toc h3 {
+      font-family: var(--F);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .legal-toc ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .legal-toc li {
+      margin-bottom: 12px;
+    }
+
+    .legal-toc a {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--dim);
+      text-decoration: none;
+      transition: all 0.3s;
+      display: block;
+      padding: 6px 0;
+      border-left: 2px solid transparent;
+      margin-left: -2px;
+    }
+
+    .legal-toc a:hover,
+    .legal-toc a.active {
+      color: var(--white);
+      border-left-color: var(--gold);
+      padding-left: 12px;
+      margin-left: -14px;
+    }
+
+    .legal-content {
+      max-width: 800px;
+    }
+
+    .legal-content h1 {
+      font-family: var(--F);
+      font-size: clamp(36px, 4vw, 48px);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .legal-meta {
+      font-size: 13px;
+      color: var(--dim);
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .legal-content h2 {
+      font-family: var(--F);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gold);
+      margin: 48px 0 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .legal-content h2:first-of-type {
+      margin-top: 0;
+    }
+
+    .legal-content h3 {
+      font-family: var(--F);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white);
+      margin: 28px 0 14px;
+    }
+
+    .legal-content p {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--dim);
+      margin-bottom: 20px;
+    }
+
+    .legal-content ul {
+      margin: 20px 0 24px 24px;
+      padding: 0;
+    }
+
+    .legal-content li {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--dim);
+      margin-bottom: 12px;
+      padding-left: 8px;
+    }
+
+    .legal-content li::marker {
+      color: var(--gold);
+    }
+
+    .legal-content a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: all 0.3s;
+      border-bottom: 1px solid transparent;
+    }
+
+    .legal-content a:hover {
+      border-bottom-color: var(--gold);
+    }
+
+    .legal-content strong {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .notice-box {
+      background: rgba(201, 168, 92, 0.08);
+      border-left: 3px solid var(--gold);
+      padding: 20px 24px;
+      margin: 32px 0;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .notice-box p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 32px;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+
+    .back-link:hover {
+      color: var(--white);
+      transform: translateX(-4px);
+    }
+
+    @media (max-width: 1024px) {
+      .legal-page {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .legal-toc {
+        position: relative;
+        top: 0;
+        border-left: none;
+        border-bottom: 1px solid var(--border);
+        padding-left: 0;
+        padding-bottom: 24px;
+      }
+
+      .legal-toc ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .legal-toc a {
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        padding: 6px 0;
+        margin: 0;
+      }
+
+      .legal-toc a:hover,
+      .legal-toc a.active {
+        border-bottom-color: var(--gold);
+        padding-left: 0;
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .legal-page {
+        padding: 120px 24px 60px;
+      }
+
+      .legal-toc ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="policy-page">
-    <a href="index.html" class="back-link">← Back to Home</a>
-    <h1>Terms & Conditions</h1>
-    <p><strong>Last Updated:</strong> January 2025</p>
-    
-    <p>Welcome to Atlas, a Digital Meister Technologies Private Limited company. By accessing our website or using our services, you agree to be bound by these Terms and Conditions.</p>
+  <!-- CURSOR -->
+  <div id="cur" aria-hidden="true"></div>
+  <div id="cur-ring" aria-hidden="true"></div>
+  <div id="cur-label" aria-hidden="true"></div>
 
-    <h2>1. Services</h2>
-    <p>Atlas provides digital marketing, branding, graphic design, web design, and related services. Specific deliverables, timelines, and pricing are outlined in individual project agreements.</p>
+  <div class="legal-page">
+    <aside class="legal-toc">
+      <h3>Table of Contents</h3>
+      <ul>
+        <li><a href="#acceptance">1. Acceptance of Terms</a></li>
+        <li><a href="#services">2. Description of Services</a></li>
+        <li><a href="#client-responsibilities">3. Client Responsibilities</a></li>
+        <li><a href="#intellectual-property">4. Intellectual Property Rights</a></li>
+        <li><a href="#payment-terms">5. Payment Terms</a></li>
+        <li><a href="#revisions">6. Revisions and Approval</a></li>
+        <li><a href="#confidentiality">7. Confidentiality</a></li>
+        <li><a href="#liability">8. Limitation of Liability</a></li>
+        <li><a href="#termination">9. Termination</a></li>
+        <li><a href="#disputes">10. Dispute Resolution</a></li>
+        <li><a href="#modifications">11. Modifications to Terms</a></li>
+        <li><a href="#contact">12. Contact Information</a></li>
+      </ul>
+    </aside>
 
-    <h2>2. Intellectual Property</h2>
-    <p>All content on this website, including text, graphics, logos, and images, is the property of Digital Meister Technologies Private Limited and is protected by copyright laws.</p>
-    <p>Upon full payment, clients receive agreed-upon usage rights to deliverables created specifically for their projects.</p>
+    <main class="legal-content">
+      <a href="index.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back to Home
+      </a>
 
-    <h2>3. Client Responsibilities</h2>
-    <p>Clients agree to:</p>
-    <ul>
-      <li>Provide accurate and timely information</li>
-      <li>Review and respond to deliverables within agreed timeframes</li>
-      <li>Make payments as specified in project agreements</li>
-      <li>Own or have rights to any materials provided to us</li>
-    </ul>
+      <h1>Terms & Conditions</h1>
+      <div class="legal-meta">
+        <p><strong>Last Updated:</strong> January 2025</p>
+        <p><strong>Effective Date:</strong> January 1, 2025</p>
+      </div>
 
-    <h2>4. Payment Terms</h2>
-    <p>Payment terms are specified in individual project agreements. Late payments may result in project delays or suspension.</p>
+      <div class="notice-box">
+        <p><strong>Important:</strong> By accessing our website or using our services, you agree to be bound by these Terms and Conditions. Please read them carefully before engaging with Atlas Marketing & Strategy.</p>
+      </div>
 
-    <h2>5. Revisions</h2>
-    <p>Project agreements include a specified number of revision rounds. Additional revisions may incur extra charges.</p>
+      <section id="acceptance">
+        <h2>1. Acceptance of Terms</h2>
+        <p>Welcome to Atlas Marketing & Strategy, a subsidiary of Digital Meister Technologies Private Limited ("we," "us," "our," or "DMT"). These Terms and Conditions ("Terms") govern your access to our website, use of our services, and all related interactions with our company.</p>
+        <p>By accessing our website at dmt-technologies.com, submitting a contact form, or engaging our services, you acknowledge that you have read, understood, and agree to be bound by these Terms. If you do not agree to these Terms, please do not use our website or services.</p>
+      </section>
 
-    <h2>6. Confidentiality</h2>
-    <p>We respect the confidentiality of client information and agree not to disclose proprietary information without consent, except as required by law.</p>
+      <section id="services">
+        <h2>2. Description of Services</h2>
+        <p>Atlas Marketing & Strategy provides comprehensive digital marketing and branding services, including but not limited to:</p>
+        <ul>
+          <li><strong>Digital Marketing:</strong> Search engine optimization (SEO), pay-per-click advertising, email marketing, and content marketing</li>
+          <li><strong>Social Media Marketing:</strong> Strategy development, content creation, community management, and paid social advertising</li>
+          <li><strong>Branding:</strong> Brand strategy, positioning, messaging, and visual identity development</li>
+          <li><strong>Graphic Design:</strong> Marketing collateral, digital assets, print materials, and promotional content</li>
+          <li><strong>Logo Design:</strong> Custom logo creation and brand mark development</li>
+          <li><strong>Website Design:</strong> Custom website design, development, and optimization</li>
+          <li><strong>Corporate Identity:</strong> Business cards, stationery, packaging, lanyards, ID cards, and badges</li>
+          <li><strong>Marketing Consultation:</strong> Strategic guidance on marketing channels, campaigns, and optimization</li>
+        </ul>
+        <p>Specific deliverables, timelines, pricing, and project scope are outlined in individual project agreements or statements of work signed by both parties.</p>
+      </section>
 
-    <h2>7. Limitation of Liability</h2>
-    <p>Atlas's liability is limited to the value of the specific project giving rise to the claim. We are not liable for indirect, incidental, or consequential damages.</p>
+      <section id="client-responsibilities">
+        <h2>3. Client Responsibilities</h2>
+        <p>To ensure successful project delivery, clients agree to:</p>
+        <ul>
+          <li><strong>Provide Accurate Information:</strong> Supply complete, accurate, and timely information necessary for project execution</li>
+          <li><strong>Timely Feedback:</strong> Review and respond to deliverables within agreed-upon timeframes (typically 3-5 business days)</li>
+          <li><strong>Single Point of Contact:</strong> Designate one primary contact person for project communications and approvals</li>
+          <li><strong>Payment Obligations:</strong> Make payments as specified in the project agreement and according to payment schedules</li>
+          <li><strong>Content Ownership:</strong> Own or have legal rights to any materials, content, or intellectual property provided to us</li>
+          <li><strong>Legal Compliance:</strong> Ensure that all provided materials comply with applicable laws and regulations</li>
+        </ul>
+        <p>Delays in client feedback or approvals may result in extended project timelines and additional charges.</p>
+      </section>
 
-    <h2>8. Termination</h2>
-    <p>Either party may terminate a project agreement with written notice. Upon termination, client pays for work completed to date.</p>
+      <section id="intellectual-property">
+        <h2>4. Intellectual Property Rights</h2>
+        
+        <h3>4.1 Our Intellectual Property</h3>
+        <p>All content on this website, including but not limited to text, graphics, logos, icons, images, audio clips, digital downloads, data compilations, and software, is the exclusive property of Digital Meister Technologies Private Limited and is protected by Indian and international copyright laws.</p>
 
-    <h2>9. Governing Law</h2>
-    <p>These terms are governed by the laws of India. Any disputes shall be resolved in the appropriate courts.</p>
+        <h3>4.2 Client Deliverables</h3>
+        <p>Upon full and final payment of all invoices, clients receive:</p>
+        <ul>
+          <li><strong>Usage Rights:</strong> Agreed-upon usage rights to final deliverables created specifically for their projects</li>
+          <li><strong>Ownership Transfer:</strong> Full ownership of final approved designs, subject to payment completion</li>
+          <li><strong>Source Files:</strong> Source files as specified in the project agreement (may require additional fees)</li>
+        </ul>
 
-    <h2>10. Changes to Terms</h2>
-    <p>We reserve the right to modify these terms at any time. Changes are effective upon posting to the website.</p>
+        <h3>4.3 Portfolio Rights</h3>
+        <p>We retain the right to display completed work in our portfolio, website, social media, and marketing materials unless otherwise agreed in writing. Confidentiality agreements can be arranged for sensitive projects.</p>
 
-    <h2>11. Contact</h2>
-    <p>For questions about these Terms, please contact us at:</p>
-    <p>Email: <a href="mailto:info@dmt-technologies.com">info@dmt-technologies.com</a></p>
+        <h3>4.4 Third-Party Materials</h3>
+        <p>Some projects may include third-party materials (stock images, fonts, plugins, etc.) that are licensed rather than owned. These materials remain subject to their respective license terms.</p>
+      </section>
+
+      <section id="payment-terms">
+        <h2>5. Payment Terms</h2>
+        
+        <h3>5.1 Pricing</h3>
+        <p>Project pricing is specified in individual project agreements or quotes. Prices are quoted in Indian Rupees (INR) unless otherwise stated and are valid for 30 days from the date of quotation.</p>
+
+        <h3>5.2 Payment Schedule</h3>
+        <p>Unless otherwise agreed:</p>
+        <ul>
+          <li><strong>Projects under ₹50,000:</strong> 100% advance payment required before work begins</li>
+          <li><strong>Projects ₹50,000 - ₹2,00,000:</strong> 50% advance, 50% upon completion</li>
+          <li><strong>Projects above ₹2,00,000:</strong> Customized milestone-based payment schedule</li>
+        </ul>
+
+        <h3>5.3 Payment Methods</h3>
+        <p>We accept payments via bank transfer, UPI, credit/debit cards, and other methods specified in your invoice.</p>
+
+        <h3>5.4 Late Payments</h3>
+        <p>Payments not received within 7 days of the due date will incur a late fee of 2% per month. Work may be suspended until payment is received, and delivery timelines will be extended accordingly.</p>
+
+        <h3>5.5 Refunds</h3>
+        <p>Advance payments are non-refundable once work has commenced. Refunds for completed work are evaluated on a case-by-case basis and subject to our satisfaction guarantee policy.</p>
+      </section>
+
+      <section id="revisions">
+        <h2>6. Revisions and Approval</h2>
+        <p>Project agreements include a specified number of revision rounds based on the service type:</p>
+        <ul>
+          <li><strong>Logo Design:</strong> 3 revision rounds included</li>
+          <li><strong>Brand Identity:</strong> 3 revision rounds included</li>
+          <li><strong>Website Design:</strong> 2 revision rounds per page template</li>
+          <li><strong>Marketing Collateral:</strong> 2 revision rounds included</li>
+          <li><strong>Social Media Content:</strong> 1 revision round per content batch</li>
+        </ul>
+        <p>Additional revisions beyond the included rounds will be charged at ₹2,500 per revision round or as specified in your project agreement. Revision requests must be provided in a consolidated, written format.</p>
+      </section>
+
+      <section id="confidentiality">
+        <h2>7. Confidentiality</h2>
+        <p>We respect the confidentiality of client information and agree to:</p>
+        <ul>
+          <li>Not disclose proprietary client information to third parties without prior written consent</li>
+          <li>Use confidential information solely for the purpose of providing our services</li>
+          <li>Implement reasonable security measures to protect confidential information</li>
+          <li>Return or destroy confidential information upon project completion if requested</li>
+        </ul>
+        <p>Confidentiality obligations do not apply to information that is: (a) publicly available, (b) independently developed, (c) rightfully received from a third party, or (d) required to be disclosed by law.</p>
+        <p>Non-disclosure agreements (NDAs) are available upon request for projects requiring enhanced confidentiality protections.</p>
+      </section>
+
+      <section id="liability">
+        <h2>8. Limitation of Liability</h2>
+        
+        <h3>8.1 Service Warranty</h3>
+        <p>We warrant that our services will be performed in a professional and workmanlike manner consistent with industry standards. However, we do not guarantee specific results, rankings, or business outcomes from our marketing services.</p>
+
+        <h3>8.2 Limitation of Damages</h3>
+        <p>To the maximum extent permitted by law, our total liability arising out of or related to these Terms or our services shall not exceed the total amount paid by you to us for the specific project giving rise to the claim.</p>
+
+        <h3>8.3 Exclusion of Consequential Damages</h3>
+        <p>In no event shall we be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, business opportunities, or goodwill.</p>
+
+        <h3>8.4 Third-Party Services</h3>
+        <p>We are not liable for the performance, failures, or actions of third-party service providers (hosting companies, advertising platforms, etc.) used in connection with our services.</p>
+      </section>
+
+      <section id="termination">
+        <h2>9. Termination</h2>
+        
+        <h3>9.1 Termination by Client</h3>
+        <p>Clients may terminate a project agreement with 14 days written notice. Upon termination:</p>
+        <ul>
+          <li>Client pays for all work completed up to the termination date</li>
+          <li>Advance payments are non-refundable for work already commenced</li>
+          <li>Deliverables are provided only upon full payment of outstanding invoices</li>
+          <li>Project files and assets are transferred within 15 business days</li>
+        </ul>
+
+        <h3>9.2 Termination by DMT</h3>
+        <p>We reserve the right to terminate services if:</p>
+        <ul>
+          <li>Client fails to make timely payments</li>
+          <li>Client breaches any material term of these Terms or project agreement</li>
+          <li>Client engages in unlawful or unethical conduct</li>
+          <li>Project becomes impossible to complete due to client circumstances</li>
+        </ul>
+
+        <h3>9.3 Effect of Termination</h3>
+        <p>Termination does not relieve either party of obligations accrued prior to termination, including payment obligations and confidentiality commitments.</p>
+      </section>
+
+      <section id="disputes">
+        <h2>10. Dispute Resolution</h2>
+        
+        <h3>10.1 Good Faith Negotiation</h3>
+        <p>Both parties agree to attempt to resolve any disputes through good faith negotiation before pursuing formal legal remedies.</p>
+
+        <h3>10.2 Governing Law</h3>
+        <p>These Terms and all disputes arising from them shall be governed by and construed in accordance with the laws of India, without regard to conflict of law principles.</p>
+
+        <h3>10.3 Jurisdiction</h3>
+        <p>Any legal action or proceeding arising out of or related to these Terms shall be brought exclusively in the courts located in India, and both parties consent to the personal jurisdiction of such courts.</p>
+
+        <h3>10.4 Alternative Dispute Resolution</h3>
+        <p>For disputes involving claims under ₹5,00,000, both parties agree to first attempt mediation before pursuing litigation. Mediation costs shall be shared equally.</p>
+      </section>
+
+      <section id="modifications">
+        <h2>11. Modifications to Terms</h2>
+        <p>We reserve the right to modify, amend, or replace these Terms at any time at our sole discretion. Changes will be effective immediately upon posting to our website.</p>
+        <p>We will notify clients of material changes via email at least 30 days before the changes take effect. Your continued use of our website or services after changes are posted constitutes acceptance of the modified Terms.</p>
+        <p>It is your responsibility to review these Terms periodically for updates. The "Last Updated" date at the top of this page indicates when these Terms were last revised.</p>
+      </section>
+
+      <section id="contact">
+        <h2>12. Contact Information</h2>
+        <p>For questions, concerns, or notices regarding these Terms and Conditions, please contact us:</p>
+        <ul>
+          <li><strong>Company:</strong> Digital Meister Technologies Private Limited</li>
+          <li><strong>Brand:</strong> Atlas Marketing & Strategy (A Subsidiary of DMT)</li>
+          <li><strong>Email:</strong> <a href="mailto:info@dmt-technologies.com">info@dmt-technologies.com</a></li>
+          <li><strong>WhatsApp:</strong> <a href="https://wa.me/919952906859">+91 9952906859</a></li>
+          <li><strong>Business Hours:</strong> Monday – Friday, 9:00 AM – 6:00 PM IST</li>
+          <li><strong>Address:</strong> India</li>
+        </ul>
+        <p>Legal notices should be sent via email with subject line "Legal Notice" or via registered post to ensure proper receipt and tracking.</p>
+      </section>
+    </main>
   </div>
+
+  <script src="js/utils/config.js"></script>
+  <script src="js/utils/api.js"></script>
+  <script src="js/components/cursor.js"></script>
+  <script>
+    // Scroll spy for table of contents
+    document.addEventListener('DOMContentLoaded', function() {
+      const sections = document.querySelectorAll('.legal-content section');
+      const tocLinks = document.querySelectorAll('.legal-toc a');
+
+      function updateActiveLink() {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          if (scrollY >= (sectionTop - 200)) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        tocLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveLink);
+      updateActiveLink();
+    });
+  </script>
 </body>
 </html>
