@@ -35,6 +35,12 @@
   border: 0;
 }
 
+/* Prevent overflow on all SVGs */
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Focus styles for keyboard navigation */
 a:focus, button:focus, input:focus, select:focus, textarea:focus {
   outline: 2px solid var(--gold);
@@ -50,7 +56,11 @@ a:focus, button:focus, input:focus, select:focus, textarea:focus {
   }
 }
 
-html  { overflow-x: clip; }
+html  { 
+  overflow-x: clip;
+  width: 100%;
+  max-width: 100vw;
+}
 body  {
   background: var(--black);
   color: var(--white);
@@ -58,6 +68,8 @@ body  {
   overflow-x: clip;
   width: 100%;
   max-width: 100vw;
+  margin: 0;
+  padding: 0;
 }
 
 /* Custom cursor - desktop only */
@@ -221,7 +233,7 @@ nav.stuck {
 /* Safe area support for hero */
 @supports (padding: max(0px)) {
   #hero {
-    padding-top: max(140px, calc(env(safe-area-inset-top) + 100px));
+    padding-top: max(140px, env(safe-area-inset-top));
   }
 }
 
@@ -241,20 +253,26 @@ nav.stuck {
   font-size: clamp(48px, 10.5vw, 160px);
   font-weight: 800; line-height: .88;
   letter-spacing: -.025em; text-transform: uppercase;
-  margin-bottom: 52px; overflow: visible;
-  word-wrap: break-word;
+  margin-bottom: 52px; 
   text-align: center;
   width: 100%;
   max-width: 100%;
+  overflow: visible;
 }
 .hero-title .word-wrap {
-  display: inline;
-  overflow: visible;
+  display: inline-block;
+  max-width: 100%;
   white-space: normal;
+  word-break: break-word;
+  overflow: visible;
 }
 .mag-letter {
   display: inline-block;
-  transition: color .3s; will-change: transform;
+  transition: color .3s; 
+  will-change: transform;
+  max-width: none;
+  transform: translateZ(0);
+  overflow: visible;
 }
 @media (pointer: fine) and (hover: hover) {
   .mag-letter { cursor: none; }
@@ -345,7 +363,11 @@ nav.stuck {
 .mq-item::after { content: '◆'; font-size: 5px; color: var(--gold); }
 
 /* ── SERVICES ── */
-#services { padding: 140px 64px; }
+#services { 
+  padding: 140px 64px;
+  width: 100%;
+  max-width: 100vw;
+}
 .section-h2 {
   font-family: var(--F);
   font-size: clamp(32px, 5.5vw, 72px);
@@ -356,12 +378,16 @@ nav.stuck {
 .svc-grid {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 2px; background: var(--border); margin-top: 80px;
+  width: 100%;
+  max-width: 100%;
 }
 .svc-card {
   background: var(--black); padding: 52px 44px;
   position: relative; overflow: hidden;
   transition: background .4s;
   cursor: none;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 @media (pointer: coarse), (hover: none) {
   .svc-card { cursor: auto; }
@@ -425,10 +451,14 @@ nav.stuck {
   display: grid; grid-template-columns: repeat(4,1fr);
   gap: 2px; background: var(--border);
   width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
 }
 .stat {
   background: var(--black); padding: 60px 40px; text-align: center; transition: background .4s;
   min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 @media (pointer: fine) and (hover: hover) {
   .stat { cursor: none; }
@@ -518,7 +548,16 @@ nav.stuck {
 }
 .feat:hover           { background: #0c0c0c; }
 .feat:hover::after    { top: -20px; left: -20px; }
-.feat-icon            { width: 48px; height: 48px; color: var(--gold); margin-bottom: 28px; display: block; transition: color .3s; }
+.feat-icon            { 
+  width: 48px; 
+  height: 48px; 
+  color: var(--gold); 
+  margin-bottom: 28px; 
+  display: block; 
+  transition: color .3s;
+  flex-shrink: 0;
+  max-width: 100%;
+}
 .feat:hover .feat-icon { color: var(--gold2); }
 .feat h3              { font-family: var(--F); font-size: 17px; font-weight: 700; text-transform: uppercase; letter-spacing: .02em; color: var(--white); margin-bottom: 14px; transition: color .3s; }
 .feat:hover h3        { color: var(--gold); }
@@ -583,6 +622,8 @@ nav.stuck {
 .form-group select,
 .form-group textarea {
   width: 100%;
+  max-width: 100%;
+  max-inline-size: 100%;
   background: transparent;
   border: 1px solid var(--border);
   padding: 14px 18px;
@@ -595,6 +636,7 @@ nav.stuck {
   -moz-appearance: none;
   appearance: none;
   min-height: 48px;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
@@ -649,6 +691,8 @@ nav.stuck {
   align-self: flex-start;
   min-height: 48px;
   min-width: 160px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 @media (pointer: fine) and (hover: hover) {
@@ -711,8 +755,21 @@ nav.stuck {
 }
 
 /* ── FOOTER ── */
-footer { padding: 80px 64px 40px; border-top: 1px solid var(--border); }
-.ft    { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 80px; }
+footer { 
+  padding: 80px 64px 40px; 
+  border-top: 1px solid var(--border);
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+.ft    { 
+  display: grid; 
+  grid-template-columns: 1.6fr 1fr 1fr 1fr; 
+  gap: 60px; 
+  margin-bottom: 80px;
+  width: 100%;
+  max-width: 100%;
+}
 .fb .logo { display: none; }
 .fb p    { font-size: 13px; font-weight: 300; color: var(--dim); line-height: 1.9; max-width: 220px; }
 .fc h4   { font-size: 9px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
@@ -844,7 +901,29 @@ footer { padding: 80px 64px 40px; border-top: 1px solid var(--border); }
   .feat-grid { grid-template-columns: repeat(2, 1fr); }
   .feat-head { grid-template-columns: 1fr; gap: 32px; }
 
-  #cta { grid-template-columns: 1fr; gap: 48px; }
+  #cta { 
+    grid-template-columns: 1fr; 
+    gap: 48px;
+    padding: 80px 24px;
+  }
+  
+  .cta-r {
+    max-width: 100%;
+  }
+  
+  .contact-form {
+    max-width: 100%;
+  }
+  
+  .form-group {
+    max-width: 100%;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    max-width: 100%;
+  }
+  
   .ft { grid-template-columns: repeat(2, 1fr); gap: 40px; }
 
   .dmt-logo { width: 60px; height: 60px; }
@@ -858,7 +937,7 @@ footer { padding: 80px 64px 40px; border-top: 1px solid var(--border); }
 /* Mobile Landscape / Large Phone (max-width: 768px) */
 @media (max-width: 768px) {
   #hero {
-    padding: calc(100px + env(safe-area-inset-top)) 24px 48px;
+    padding: max(100px, calc(env(safe-area-inset-top) + 40px)) 24px 48px;
     height: auto;
     min-height: 100vh;
     justify-content: flex-start;
@@ -940,9 +1019,10 @@ footer { padding: 80px 64px 40px; border-top: 1px solid var(--border); }
   .n-btn { display: none; }
 
   .hero-title {
-    font-size: clamp(32px, 9vw, 72px);
+    font-size: clamp(32px, 8.5vw, 72px);
     margin-bottom: 28px;
     letter-spacing: -0.02em;
+    line-height: 1;
   }
   .hero-bot {
     flex-direction: column;
@@ -977,8 +1057,18 @@ footer { padding: 80px 64px 40px; border-top: 1px solid var(--border); }
   .fb2 { flex-direction: column; gap: 16px; text-align: center; }
   .fsoc { justify-content: center; }
 
-  .contact-form { gap: 16px; }
-  .submit-btn { width: 100%; }
+  .contact-form { 
+    gap: 16px;
+    max-width: 100%;
+  }
+  .submit-btn { 
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .cta-r {
+    max-width: 100%;
+  }
 
   .dmt-logo-footer { max-width: 110px; }
 
@@ -988,7 +1078,7 @@ footer { padding: 80px 64px 40px; border-top: 1px solid var(--border); }
 /* Mobile Portrait (max-width: 480px) */
 @media (max-width: 480px) {
   #hero { 
-    padding: calc(90px + env(safe-area-inset-top)) 16px 40px;
+    padding: max(90px, calc(env(safe-area-inset-top) + 35px)) 16px 40px;
     justify-content: flex-start;
   }
   #services, #why-choose, #cta-pre, #cta { padding: 64px 16px; }
@@ -1022,9 +1112,10 @@ footer { padding: 80px 64px 40px; border-top: 1px solid var(--border); }
   .n-logo-tag { font-size: 6px; letter-spacing: 1px; }
 
   .hero-title {
-    font-size: clamp(28px, 9vw, 60px);
+    font-size: clamp(28px, 8vw, 60px);
     margin-bottom: 22px;
     letter-spacing: -0.015em;
+    line-height: 1;
   }
   .hero-desc {
     font-size: 13px;
@@ -1059,12 +1150,15 @@ footer { padding: 80px 64px 40px; border-top: 1px solid var(--border); }
   .form-group textarea {
     font-size: 16px;
     padding: 14px 16px;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .submit-btn {
     padding: 14px 24px;
     font-size: 12px;
     min-width: 100%;
+    max-width: 100%;
   }
 
   .dmt-logo-footer { max-width: 100px; }
@@ -1077,12 +1171,13 @@ footer { padding: 80px 64px 40px; border-top: 1px solid var(--border); }
 /* Small Mobile (max-width: 414px) */
 @media (max-width: 414px) {
   #hero { 
-    padding: calc(86px + env(safe-area-inset-top)) 16px 36px;
+    padding: max(86px, calc(env(safe-area-inset-top) + 30px)) 16px 36px;
     justify-content: flex-start;
   }
   .hero-title { 
-    font-size: clamp(26px, 9vw, 54px);
+    font-size: clamp(26px, 8vw, 54px);
     letter-spacing: -0.01em;
+    line-height: 1;
   }
   
   nav { 
@@ -1118,12 +1213,13 @@ footer { padding: 80px 64px 40px; border-top: 1px solid var(--border); }
 /* Extra Small Mobile (max-width: 375px) */
 @media (max-width: 375px) {
   #hero {
-    padding: calc(82px + env(safe-area-inset-top)) 14px 34px;
+    padding: max(82px, calc(env(safe-area-inset-top) + 28px)) 14px 34px;
   }
   
   .hero-title { 
-    font-size: clamp(24px, 9vw, 50px);
+    font-size: clamp(24px, 8vw, 50px);
     letter-spacing: -0.01em;
+    line-height: 1;
   }
   .hero-desc { 
     font-size: 12px;
@@ -1180,7 +1276,7 @@ footer { padding: 80px 64px 40px; border-top: 1px solid var(--border); }
 /* iPhone SE / Smallest Mobile (max-width: 320px) */
 @media (max-width: 320px) {
   #hero { 
-    padding: calc(78px + env(safe-area-inset-top)) 12px 32px;
+    padding: max(78px, calc(env(safe-area-inset-top) + 25px)) 12px 32px;
     justify-content: flex-start;
   }
   #services, #why-choose, #cta { 
@@ -1191,9 +1287,10 @@ footer { padding: 80px 64px 40px; border-top: 1px solid var(--border); }
   }
   
   .hero-title { 
-    font-size: clamp(22px, 9vw, 46px);
+    font-size: clamp(22px, 8vw, 46px);
     letter-spacing: 0;
     margin-bottom: 18px;
+    line-height: 1;
   }
   .hero-desc { 
     font-size: 11px; 
