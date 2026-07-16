@@ -10,12 +10,19 @@
       window.matchMedia('(pointer: coarse)').matches ||
       window.matchMedia('(hover: none)').matches ||
       'ontouchstart' in window ||
-      navigator.maxTouchPoints > 0
+      navigator.maxTouchPoints > 0 ||
+      navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i)
     );
   };
 
-  if (isTouchDevice()) {
-    console.log('Touch device detected - skipping custom cursor initialization');
+  // Also check if we're on a fine pointer device (desktop)
+  const isFinePointer = () => {
+    return window.matchMedia('(pointer: fine) and (hover: hover)').matches;
+  };
+
+  // Only initialize cursor on desktop with fine pointer
+  if (!isFinePointer() || isTouchDevice()) {
+    console.log('Touch device or coarse pointer detected - skipping custom cursor initialization');
     return;
   }
 
