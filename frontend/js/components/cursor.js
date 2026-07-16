@@ -1,8 +1,24 @@
 // js/cursor.js
 // Custom cursor — dot + trailing ring + label
 // Reusable module that safely initializes only when cursor elements exist
+// Disabled on touch devices (pointer: coarse or hover: none)
 
 (function() {
+  // Detect touch devices - skip cursor initialization on mobile/tablet
+  const isTouchDevice = () => {
+    return (
+      window.matchMedia('(pointer: coarse)').matches ||
+      window.matchMedia('(hover: none)').matches ||
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0
+    );
+  };
+
+  if (isTouchDevice()) {
+    console.log('Touch device detected - skipping custom cursor initialization');
+    return;
+  }
+
   const cur   = document.getElementById('cur');
   const ring  = document.getElementById('cur-ring');
   const label = document.getElementById('cur-label');
