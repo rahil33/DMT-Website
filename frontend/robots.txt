@@ -1,15 +1,48 @@
-# robots.txt for DMT Website - Atlas
-# https://www.dmt-technologies.com/
+# ═══════════════════════════════════════
+# robots.txt for Digital Meister Technologies
+# Atlas Marketing & Strategy | A Subsidiary of DMT
+# ═══════════════════════════════════════
 
 User-agent: *
 Allow: /
 
-# Disallow admin or private areas (if added later)
-Disallow: /admin/
-Disallow: /private/
-
 # Sitemap location
 Sitemap: https://www.dmt-technologies.com/sitemap.xml
 
-# Crawl-delay for polite crawling
+# Crawl-delay for polite crawling (optional)
 Crawl-delay: 1
+
+# Disallow admin/private areas (if any in future)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: facebot
+Allow: /
+
+User-agent: ia_archiver
+Allow: /

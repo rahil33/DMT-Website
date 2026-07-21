@@ -35,6 +35,27 @@
   border: 0;
 }
 
+/* Skip links for keyboard navigation */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--gold);
+  color: var(--black);
+  padding: 8px 16px;
+  z-index: 10000;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+}
+
 /* Prevent overflow on all SVGs */
 svg {
   max-width: 100%;
@@ -709,6 +730,24 @@ nav.stuck {
   cursor: not-allowed;
 }
 
+/* Newsletter form styles */
+.newsletter-form input {
+  min-height: 44px;
+}
+
+.newsletter-form input:focus {
+  border-color: var(--gold);
+}
+
+.newsletter-btn:hover {
+  background: var(--white) !important;
+  border-color: var(--white) !important;
+}
+
+@media (pointer: fine) and (hover: hover) {
+  .newsletter-btn { cursor: none; }
+}
+
 /* Form validation styles */
 .form-group input[aria-invalid="true"],
 .form-group textarea[aria-invalid="true"],
@@ -1073,6 +1112,19 @@ footer {
   .dmt-logo-footer { max-width: 110px; }
 
   .scroll-ind { display: none; }
+  
+  .newsletter-form {
+    flex-direction: column;
+  }
+  
+  .newsletter-form input {
+    width: 100%;
+    min-width: 100%;
+  }
+  
+  .newsletter-btn {
+    width: 100%;
+  }
 }
 
 /* Mobile Portrait (max-width: 480px) */

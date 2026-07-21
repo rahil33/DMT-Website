@@ -30,6 +30,13 @@
   <meta name="twitter:title" content="Atlas Marketing & Strategy | A Subsidiary of DMT — Digital Marketing & Branding Agency">
   <meta name="twitter:description" content="Professional digital marketing, branding, and design services. Transform your brand with Atlas Marketing & Strategy.">
   <meta name="twitter:image" content="assets/images/twitter-card.jpg">
+  <meta name="twitter:image:alt" content="Digital Meister Technologies - Atlas Marketing">
+  
+  <!-- Additional SEO Meta Tags -->
+  <meta name="googlebot" content="index, follow, max-image-preview:large">
+  <meta name="bingbot" content="index, follow">
+  <meta name="language" content="English">
+  <meta name="rating" content="general">
   
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="assets/logos/favicon-32x32.png">
@@ -42,12 +49,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://www.dmt-technologies.com" crossorigin>
+  <link rel="preconnect" href="https://dmt-website-backend.onrender.com" crossorigin>
+  
+  <!-- Preload critical assets -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" as="style">
+  <link rel="preload" href="css/style.css" as="style">
   
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
   
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/mobile-menu.css">
   
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -57,6 +71,7 @@
     "name": "Atlas Marketing & Strategy",
     "alternateName": "Digital Meister Technologies",
     "url": "https://www.dmt-technologies.com/",
+    "logo": "https://www.dmt-technologies.com/assets/logos/dmt-logo.svg",
     "description": "Atlas Marketing & Strategy is a digital marketing and branding agency operating as a subsidiary of Digital Meister Technologies Private Limited.",
     "foundingDate": "2025",
     "areaServed": "IN",
@@ -64,34 +79,58 @@
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer service",
-      "email": "info@dmt-technologies.com"
+      "email": "info@dmt-technologies.com",
+      "telephone": "+91-9952906859",
+      "availableLanguage": ["English", "Hindi"]
     },
     "parentOrganization": {
       "@type": "Organization",
       "name": "Digital Meister Technologies Private Limited",
-      "alternateName": "DMT"
-    }
+      "alternateName": "DMT",
+      "url": "https://www.dmt-technologies.com/",
+      "logo": "https://www.dmt-technologies.com/assets/logos/dmt-logo.svg"
+    },
+    "sameAs": [
+      "https://www.instagram.com/dmttechnologies",
+      "https://www.linkedin.com/company/dmt-technologies",
+      "https://twitter.com/dmttechnologies"
+    ]
   }
   </script>
 </head>
 <body itemscope itemtype="https://schema.org/WebPage">
+
+  <!-- Skip Links for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <a href="#nav" class="skip-link">Skip to navigation</a>
 
   <!-- CURSOR -->
   <div id="cur" aria-hidden="true"></div>
   <div id="cur-ring" aria-hidden="true"></div>
   <div id="cur-label" aria-hidden="true"></div>
 
+  <!-- Main Content Wrapper -->
+  <main id="main-content" role="main">
+  
   <!-- NAV -->
   <nav id="nav" role="navigation" aria-label="Main navigation">
     <a href="#" class="n-logo" aria-label="Digital Meister Technologies Home">
-      <img src="assets/logos/dmt-logo.svg" alt="Digital Meister Technologies Private Limited Logo" class="dmt-logo">
+      <img src="assets/logos/dmt-logo.svg" alt="Digital Meister Technologies Private Limited Logo" class="dmt-logo" loading="eager" fetchpriority="high">
       <div class="n-logo-text">
         <span class="n-logo-main">DIGITAL MEISTER TECHNOLOGIES</span>
         <span class="n-logo-sub">ATLAS MARKETING & STRATEGY</span>
         <span class="n-logo-tag">A SUBSIDIARY OF DMT</span>
       </div>
     </a>
-    <ul class="n-links">
+    
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    
+    <ul class="n-links" id="navLinks">
       <li><a href="#services">Services</a></li>
       <li><a href="#why-choose">Why DMT</a></li>
       <li><a href="#process">Process</a></li>
@@ -309,11 +348,23 @@
   <footer role="contentinfo">
     <div class="ft">
       <div class="fb">
-        <img src="assets/logos/dmt-logo.svg" alt="Digital Meister Technologies Private Limited Logo" class="dmt-logo-footer">
+        <img src="assets/logos/dmt-logo.svg" alt="Digital Meister Technologies Private Limited Logo" class="dmt-logo-footer" loading="lazy">
         <p style="font-size:11px;color:var(--dim);margin-top:8px;">DIGITAL MEISTER TECHNOLOGIES PRIVATE LIMITED</p>
         <p style="font-size:11px;color:var(--gold);margin-top:4px;">ATLAS MARKETING & STRATEGY</p>
         <p style="font-size:11px;color:var(--dim);margin-top:4px;">A Subsidiary of DMT</p>
         <p style="font-size:13px;font-weight:300;color:var(--dim);line-height:1.9;margin-top:16px;">Professional digital marketing and branding services.</p>
+        
+        <!-- Newsletter Subscription -->
+        <div style="margin-top:24px;">
+          <p style="font-size:12px;font-weight:500;color:var(--white);margin-bottom:12px;letter-spacing:0.1em;text-transform:uppercase;">Subscribe to Our Newsletter</p>
+          <form id="newsletterForm" class="newsletter-form" aria-label="Newsletter subscription form">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <input type="email" id="newsletterEmail" name="email" placeholder="Enter your email" required aria-required="true" autocomplete="email" style="flex:1;min-width:200px;background:transparent;border:1px solid var(--border);padding:12px 16px;font-family:var(--B);font-size:14px;color:var(--white);outline:none;transition:border-color .3s;">
+              <button type="submit" class="newsletter-btn" style="font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--black);background:var(--gold);border:1px solid var(--gold);padding:12px 24px;cursor:pointer;transition:all .3s;min-height:44px;white-space:nowrap;">Subscribe</button>
+            </div>
+            <p id="newsletterMessage" style="font-size:11px;margin-top:8px;min-height:16px;" role="status" aria-live="polite"></p>
+          </form>
+        </div>
       </div>
       <div class="fc"><h4>Services</h4><ul><li><a href="#services">Digital Marketing</a></li><li><a href="#services">Branding</a></li><li><a href="#services">Graphic Design</a></li><li><a href="#services">Web Design</a></li><li><a href="#services">SEO</a></li></ul></div>
       <div class="fc"><h4>Company</h4><ul><li><a href="#why-choose">Why DMT</a></li><li><a href="#process">Process</a></li><li><a href="#cta">Contact</a></li></ul></div>
@@ -335,6 +386,9 @@
   <script src="js/animations/letters.js"></script>
   <script src="js/components/scroll.js"></script>
   <script src="js/components/cta.js"></script>
+  <script src="js/components/newsletter.js"></script>
+  <script src="js/components/mobile-menu.js"></script>
 
+</main>
 </body>
 </html>

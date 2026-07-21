@@ -11,8 +11,10 @@ const mongoose = require('mongoose');
 const connectDB = require('./src/config/database');
 const logger = require('./src/middleware/logger');
 const errorHandler = require('./src/middleware/errorHandler');
-const { apiLimiter, contactLimiter } = require('./src/middleware/rateLimiter');
+const { apiLimiter, contactLimiter, newsletterLimiter } = require('./src/middleware/rateLimiter');
+const { sanitizeInput, preventNoSQLInjection } = require('./src/middleware/sanitize');
 const contactRoutes = require('./src/routes/contactRoutes');
+const newsletterRoutes = require('./src/routes/newsletterRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -57,6 +59,10 @@ app.use(
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
+// Input sanitization middleware (must be after body-parser)
+app.use(sanitizeInput);
+app.use(preventNoSQLInjection);
+
 // Compression middleware
 app.use(compression());
 
@@ -68,6 +74,7 @@ app.use('/api', apiLimiter);
 
 // API Routes
 app.use('/api/contact', contactLimiter, contactRoutes);
+app.use('/api/newsletter', newsletterRoutes);
 
 // Health check endpoint with database status
 app.get('/api/health', async (req, res) => {

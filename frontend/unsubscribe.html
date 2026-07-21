@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unsubscribe — Atlas | A DMT Company</title>
+  <meta name="description" content="Unsubscribe from Digital Meister Technologies newsletter">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/mobile-menu.css">
+  <style>
+    .unsubscribe-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 24px;
+    }
+    
+    .unsubscribe-card {
+      max-width: 500px;
+      width: 100%;
+      background: rgba(201, 168, 92, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 48px 32px;
+      text-align: center;
+    }
+    
+    .unsubscribe-card h1 {
+      font-family: var(--F);
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    
+    .unsubscribe-card p {
+      font-size: 14px;
+      color: var(--dim);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+    
+    .unsubscribe-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .unsubscribe-form input {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 14px 18px;
+      font-family: var(--B);
+      font-size: 16px;
+      color: var(--white);
+      outline: none;
+      transition: border-color .3s;
+      min-height: 48px;
+      box-sizing: border-box;
+    }
+    
+    .unsubscribe-form input:focus {
+      border-color: var(--gold);
+    }
+    
+    .unsubscribe-btn {
+      font-family: var(--B);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 14px 32px;
+      cursor: pointer;
+      transition: all .3s;
+      min-height: 48px;
+      align-self: center;
+      min-width: 160px;
+    }
+    
+    .unsubscribe-btn:hover {
+      background: var(--white);
+      border-color: var(--white);
+    }
+    
+    .unsubscribe-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    
+    .form-message {
+      font-size: 13px;
+      margin-top: 16px;
+      min-height: 20px;
+    }
+    
+    .form-message.success {
+      color: #27ae60;
+    }
+    
+    .form-message.error {
+      color: #e74c3c;
+    }
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      min-height: 44px;
+    }
+    
+    .back-link:hover {
+      color: var(--white);
+    }
+    
+    @media (max-width: 480px) {
+      .unsubscribe-page {
+        padding: 100px 16px 40px;
+      }
+      
+      .unsubscribe-card {
+        padding: 32px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="cur" aria-hidden="true"></div>
+  <div id="cur-ring" aria-hidden="true"></div>
+  <div id="cur-label" aria-hidden="true"></div>
+  
+  <div class="unsubscribe-page">
+    <div class="unsubscribe-card">
+      <h1>Unsubscribe from Newsletter</h1>
+      <p>We're sorry to see you go. If you wish to unsubscribe from our newsletter, please enter your email address below.</p>
+      
+      <form id="unsubscribeForm" class="unsubscribe-form" aria-label="Unsubscribe form">
+        <input type="email" id="unsubscribeEmail" name="email" placeholder="Enter your email" required aria-required="true" autocomplete="email">
+        <button type="submit" class="unsubscribe-btn">Unsubscribe</button>
+        <p id="unsubscribeMessage" class="form-message" role="status" aria-live="polite"></p>
+      </form>
+      
+      <a href="index.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back to Home
+      </a>
+    </div>
+  </div>
+  
+  <script src="js/utils/config.js"></script>
+  <script src="js/utils/api.js"></script>
+  <script src="js/components/cursor.js"></script>
+  <script>
+    const unsubscribeForm = document.getElementById('unsubscribeForm');
+    const unsubscribeMsg = document.getElementById('unsubscribeMessage');
+    
+    // Check for email in URL query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const emailFromUrl = urlParams.get('email');
+    if (emailFromUrl) {
+      document.getElementById('unsubscribeEmail').value = emailFromUrl;
+    }
+    
+    unsubscribeForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('unsubscribeEmail').value.trim();
+      
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        unsubscribeMsg.textContent = 'Please enter a valid email address';
+        unsubscribeMsg.className = 'form-message error';
+        return;
+      }
+      
+      const submitBtn = unsubscribeForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.textContent;
+      
+      submitBtn.textContent = 'Processing...';
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.7';
+      
+      try {
+        const response = await fetch(`${window.API_BASE_URL || 'http://localhost:5000/api'}/newsletter/unsubscribe`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email })
+        });
+        
+        const result = await response.json();
+        
+        if (!response.ok) {
+          unsubscribeMsg.textContent = result.message || 'Unsubscribe failed';
+          unsubscribeMsg.className = 'form-message error';
+          submitBtn.textContent = originalBtnText;
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
+          return;
+        }
+        
+        unsubscribeMsg.textContent = result.message || 'You have been successfully unsubscribed.';
+        unsubscribeMsg.className = 'form-message success';
+        unsubscribeForm.reset();
+        
+        submitBtn.textContent = 'Unsubscribed';
+        submitBtn.disabled = true;
+        
+      } catch (err) {
+        console.error('Unsubscribe error:', err);
+        unsubscribeMsg.textContent = 'Something went wrong. Please try again.';
+        unsubscribeMsg.className = 'form-message error';
+        submitBtn.textContent = originalBtnText;
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+      }
+    });
+  </script>
+</body>
+</html>

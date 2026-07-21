@@ -1,26 +1,28 @@
 {
-  "name": "Digital Meister Technologies — Atlas",
+  "name": "Digital Meister Technologies - Atlas Marketing & Strategy",
   "short_name": "DMT Atlas",
-  "description": "Professional digital marketing and branding services by Digital Meister Technologies Private Limited",
+  "description": "Professional digital marketing, branding, and design services",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#060606",
-  "theme_color": "#c9a85c",
+  "theme_color": "#060606",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "assets/logos/icon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "src": "assets/logos/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
     },
     {
-      "src": "assets/logos/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "src": "assets/logos/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/logos/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
     }
   ],
-  "categories": ["business", "marketing", "design"],
-  "lang": "en-US"
+  "categories": ["business", "marketing", "productivity"]
 }
